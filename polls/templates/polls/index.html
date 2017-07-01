@@ -1,0 +1,21 @@
+{% extends "account/base.html" %}
+
+{% block user %}
+{% if user.is_authenticated %}
+<h3>hello {{user.username}}</h3>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<h2>Questions</h2>
+
+{% if latest_question_list%}
+	<ul>
+	{%for question in latest_question_list%}
+	<li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+	{%endfor%}
+{%else%}
+	<p>no polls to show</p>
+{%endif%}
+
+{% endblock %}
